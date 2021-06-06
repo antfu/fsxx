@@ -1,0 +1,52 @@
+{
+  "name": "fsxx",
+  "version": "0.0.0",
+  "description": "File system in zx style",
+  "keywords": [
+    "zx",
+    "fs"
+  ],
+  "engines": {
+    "node": ">= 14.8.0"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antfu/fsxx.git"
+  },
+  "funding": "https://github.com/sponsors/antfu",
+  "author": "Anthony Fu <anthonyfu117@hotmail.com>",
+  "type": "module",
+  "files": [
+    "*.mjs",
+    "*.js",
+    "*.d.ts"
+  ],
+  "module": "index.mjs",
+  "types": "index.d.ts",
+  "bugs": {
+    "url": "https://github.com/antfu/fsxx/issues"
+  },
+  "homepage": "https://github.com/antfu/fsxx#readme",
+  "scripts": {
+    "release": "git-ensure -a && bumpp --commit --push --tag",
+    "lint": "eslint \"**/*.mjs\"",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "node test/index.test.mjs"
+  },
+  "dependencies": {
+    "fast-glob": "^3.2.5",
+    "fs-extra": "^10.0.0",
+    "zx": "^1.14.1"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.6.2",
+    "@antfu/ni": "^0.5.5",
+    "@types/fs-extra": "^9.0.11",
+    "@types/node": "^14.14.37",
+    "bumpp": "^6.0.6",
+    "eslint": "^7.23.0",
+    "tasuku": "^1.0.0",
+    "typescript": "^4.2.3"
+  }
+}
