@@ -1,6 +1,6 @@
 {
   "name": "fsxx",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "File system in zx style",
   "keywords": [
     "zx",
@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/antfu/fsxx#readme",
   "scripts": {
-    "release": "git-ensure -a && bumpp --commit --push --tag",
+    "release": "bumpp --commit --push --tag",
     "lint": "eslint \"**/*.mjs\"",
     "lint:fix": "npm run lint -- --fix",
     "test": "node test/index.test.mjs"
