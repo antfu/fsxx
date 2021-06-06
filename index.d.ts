@@ -14,13 +14,21 @@ export interface IOSyncReturn<T> {
   read(): T
 }
 
-type TemplateFunction<R> =
-  | ((template: TemplateStringsArray, ...substitutions: any[]) => R)
-  | ((template: string) => R)
+type TemplateFunction<R = any> =
+  | (<T extends R>(template: TemplateStringsArray, ...substitutions: any[]) => T)
+  | (<T extends R>(template: string) => T)
+
+type TemplateFunctionPromised<R = any> =
+| (<T extends R>(template: TemplateStringsArray, ...substitutions: any[]) => Promise<T>)
+| (<T extends R>(template: string) => Promise<T>)
 
 export interface read {
   (): TemplateFunction<Promise<string>>
   sync: TemplateFunction<string>
+  json: {
+    (): TemplateFunctionPromised
+    sync: TemplateFunction
+  }
 }
 
 export interface remove {
@@ -37,15 +45,12 @@ export interface write {
 }
 
 export interface io {
-  io: TemplateFunction<Promise<IOReturn<string>>>
+  (): TemplateFunction<Promise<IOReturn<string>>>
   sync: TemplateFunction<IOSyncReturn<string>>
-}
-
-export interface json {
-  (): TemplateFunction<Promise<any>>
-  io: TemplateFunction<Promise<IOReturn<any>>>
-  sync: TemplateFunction<any>
-  ioSync: TemplateFunction<IOSyncReturn<any>>
+  json: {
+    (): TemplateFunction<Promise<IOReturn<any>>>
+    sync: TemplateFunction<IOSyncReturn<any>>
+  }
 }
 
 export function glob(template: TemplateStringsArray, ...substitutions: any[]): Promise<string[]>

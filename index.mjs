@@ -88,12 +88,19 @@ io.sync = function(...args) {
   )
 }
 
-export async function json(...args) {
+async function jsonRead(...args) {
   const path = interpretPath(args)
   return fs.readJSON(path)
 }
 
-json.io = async function(...args) {
+jsonRead.sync = function(...args) {
+  const path = interpretPath(args)
+  return fs.readJSONSync(path)
+}
+
+read.json = jsonRead
+
+async function jsonIO(...args) {
   const path = interpretPath(args)
 
   return await createObject(
@@ -102,12 +109,7 @@ json.io = async function(...args) {
   )
 }
 
-json.sync = function(...args) {
-  const path = interpretPath(args)
-  return fs.readJSONSync(path)
-}
-
-json.ioSync = function(...args) {
+jsonIO.sync = function(...args) {
   const path = interpretPath(args)
 
   return createSyncObject(
@@ -115,6 +117,8 @@ json.ioSync = function(...args) {
     data => fs.writeJSONSync(path, data),
   )
 }
+
+io.json = jsonIO
 
 export function glob(...args) {
   const input = interpretPath(args)
