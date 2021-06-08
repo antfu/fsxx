@@ -31,20 +31,20 @@ export interface read {
   }
 }
 
-export interface remove {
+export declare const remove: {
   (): TemplateFunction<Promise<void>>
 }
 
-export interface exists {
+export declare const exists: {
   (): TemplateFunction<boolean>
 }
 
-export interface write {
+export declare const write: {
   (): (path: string, content: string) => Promise<void>
   sync: (path: string, content: string) => void
 }
 
-export interface io {
+export declare const io: {
   (): TemplateFunction<Promise<IOReturn<string>>>
   sync: TemplateFunction<IOSyncReturn<string>>
   json: {

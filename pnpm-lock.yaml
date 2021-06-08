@@ -6,6 +6,7 @@ specifiers:
   '@types/fs-extra': ^9.0.11
   '@types/node': ^14.14.37
   bumpp: ^6.0.6
+  esbuild-node-loader: ^0.0.0
   eslint: ^7.23.0
   fast-glob: ^3.2.5
   fs-extra: ^10.0.0
@@ -24,6 +25,7 @@ devDependencies:
   '@types/fs-extra': 9.0.11
   '@types/node': 14.17.2
   bumpp: 6.0.6
+  esbuild-node-loader: 0.0.0
   eslint: 7.28.0
   tasuku: 1.0.0
   typescript: 4.3.2
@@ -938,6 +940,18 @@ packages:
       is-callable: 1.2.3
       is-date-object: 1.0.4
       is-symbol: 1.0.4
+    dev: true
+
+  /esbuild-node-loader/0.0.0:
+    resolution: {integrity: sha512-f4Zs1sWMst3PwVfiRpZIos/BV31a8KVSyIXodXeQjNkgc1mLIBKw7p0uY7qbLoq7ICfrsQJgvXIwPHRSHd5qSA==}
+    dependencies:
+      esbuild: 0.12.6
+    dev: true
+
+  /esbuild/0.12.6:
+    resolution: {integrity: sha512-RDvVLvAjsq/kIZJoneMiUOH7EE7t2QaW7T3Q7EdQij14+bZbDq5sndb0tTanmHIFSqZVMBMMyqzVHkS3dJobeA==}
+    hasBin: true
+    requiresBuild: true
     dev: true
 
   /escalade/3.1.1:

@@ -22,6 +22,12 @@
     "*.js",
     "*.d.ts"
   ],
+  "exports": {
+    ".": {
+      "import": "./index.mjs"
+    }
+  },
+  "main": "index.mjs",
   "module": "index.mjs",
   "types": "index.d.ts",
   "bugs": {
@@ -45,6 +51,7 @@
     "@types/fs-extra": "^9.0.11",
     "@types/node": "^14.14.37",
     "bumpp": "^6.0.6",
+    "esbuild-node-loader": "^0.0.0",
     "eslint": "^7.23.0",
     "tasuku": "^1.0.0",
     "typescript": "^4.2.3"
