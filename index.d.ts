@@ -14,42 +14,51 @@ export interface IOSyncReturn<T> {
   read(): T
 }
 
-type TemplateFunction<R = any> =
-  | (<T extends R>(template: TemplateStringsArray, ...substitutions: any[]) => T)
-  | (<T extends R>(template: string) => T)
-
-type TemplateFunctionPromised<R = any> =
-| (<T extends R>(template: TemplateStringsArray, ...substitutions: any[]) => Promise<T>)
-| (<T extends R>(template: string) => Promise<T>)
-
 export interface read {
-  (): TemplateFunction<Promise<string>>
-  sync: TemplateFunction<string>
+  (str: string): Promise<string>
+  (template: TemplateStringsArray, ...substitutions: any[]): Promise<string>
+
+  sync(str: string): string
+  sync(template: TemplateStringsArray, ...substitutions: any[]): string
+
   json: {
-    (): TemplateFunctionPromised
-    sync: TemplateFunction
+    <T>(str: string): Promise<T>
+    <T>(template: TemplateStringsArray, ...substitutions: any[]): Promise<T>
+
+    sync<T>(str: string): T
+    sync<T>(template: TemplateStringsArray, ...substitutions: any[]): T
   }
 }
 
 export declare const remove: {
-  (): TemplateFunction<Promise<void>>
+  (str: string): Promise<void>
+  (template: TemplateStringsArray, ...substitutions: any[]): Promise<void>
 }
 
 export declare const exists: {
-  (): TemplateFunction<boolean>
+  (str: string): boolean
+  (template: TemplateStringsArray, ...substitutions: any[]): boolean
 }
 
 export declare const write: {
-  (): (path: string, content: string) => Promise<void>
-  sync: (path: string, content: string) => void
+  (path: string, content: string): Promise<void>
+  sync(path: string, content: string): void
 }
 
 export declare const io: {
-  (): TemplateFunction<Promise<IOReturn<string>>>
-  sync: TemplateFunction<IOSyncReturn<string>>
+  (str: string): Promise<IOReturn<string>>
+  (template: TemplateStringsArray, ...substitutions: any[]): Promise<IOReturn<string>>
+
+  sync(str: string): IOSyncReturn<string>
+  sync(template: TemplateStringsArray, ...substitutions: any[]): IOSyncReturn<string>
+
   json: {
-    (): TemplateFunction<Promise<IOReturn<any>>>
-    sync: TemplateFunction<IOSyncReturn<any>>
+    <T>(str: string): Promise<IOReturn<T>>
+    <T>(template: TemplateStringsArray, ...substitutions: any[]): Promise<IOReturn<T>>
+
+    sync<T>(str: string): IOSyncReturn<T>
+    sync<T>(template: TemplateStringsArray, ...substitutions: any[]): IOSyncReturn<T>
+
     spaces: number
   }
 }
