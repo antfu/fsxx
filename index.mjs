@@ -105,7 +105,7 @@ async function jsonIO(...args) {
 
   return await createObject(
     () => fs.readJSON(path),
-    data => fs.writeJSON(path, data),
+    data => fs.writeJSON(path, data, { spaces: jsonIO.spaces }),
   )
 }
 
@@ -114,9 +114,11 @@ jsonIO.sync = function(...args) {
 
   return createSyncObject(
     () => fs.readJSONSync(path),
-    data => fs.writeJSONSync(path, data),
+    data => fs.writeJSONSync(path, data, { spaces: jsonIO.spaces }),
   )
 }
+
+jsonIO.spaces = 0
 
 io.json = jsonIO
 

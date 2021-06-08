@@ -50,6 +50,7 @@ export declare const io: {
   json: {
     (): TemplateFunction<Promise<IOReturn<any>>>
     sync: TemplateFunction<IOSyncReturn<any>>
+    spaces: number
   }
 }
 
