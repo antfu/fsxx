@@ -1,26 +1,26 @@
 import assert from 'assert'
-import { join, dirname } from 'path'
+import { dirname, join } from 'path'
 import { fileURLToPath } from 'url'
 import task from 'tasuku'
-// @ts-expect-error
-import { read, write, cd, io, remove, exists, fs } from '../index.mjs'
+import { cd, exists, fs, io, read, remove, write } from '../index.mjs'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
+const root = dirname(__dirname)
 
-await task('json', async() => {
+await task('json', async () => {
   assert((await read.json`package.json`).name === 'fsxx')
 })
 
-await task('cd + read', async() => {
-  cd('.github')
+await task('cd + read', async () => {
+  cd(join(root, '.github'))
   assert((await read`FUNDING.yml`).includes('antfu'))
 })
 
-await task('io', async() => {
+await task('io', async () => {
   const ts = Date.now().toString()
 
-  cd('test')
+  cd(join(root, 'test'))
 
   await write('__test', ts)
   assert(exists`__test`)
@@ -37,8 +37,8 @@ await task('io', async() => {
   await remove`__test`
 })
 
-await task('io.json', async() => {
-  cd('test')
+await task('io.json', async () => {
+  cd(join(root, 'test'))
 
   await write('__test.json', '{ "name": "Hello" }')
   assert(exists`__test.json`)

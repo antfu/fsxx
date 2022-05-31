@@ -63,11 +63,11 @@ interface IO {
   }
 }
 
-export declare const read: Read;
-export declare const write: Write;
-export declare const remove: Remove;
-export declare const exists: Exists;
-export declare const io: IO;
+export declare const read: Read
+export declare const write: Write
+export declare const remove: Remove
+export declare const exists: Exists
+export declare const io: IO
 
 export function glob(template: TemplateStringsArray, ...substitutions: any[]): Promise<string[]>
 

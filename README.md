@@ -5,11 +5,11 @@
 File system in [zx](https://github.com/google/zx) style.
 
 ```ts
-import { read, io, cd } from 'fsxx'
+import { cd, io, read } from 'fsxx'
 
 console.log(await read`README.md`)
 
-let { name } = await read.json`package.json`
+const { name } = await read.json`package.json`
 
 cd('packages')
 const { data, save } = await io.json`./core/package.json`

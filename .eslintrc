@@ -1,4 +1,3 @@
 {
-  "extends": ["@antfu"],
-  "rules": {}
+  "extends": "@antfu"
 }

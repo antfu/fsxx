@@ -6,7 +6,6 @@ import { $, cd } from 'zx'
 const resolve = (...args) => path.resolve($.cwd || process.cwd(), ...args)
 
 function interpret(args) {
-  // @ts-expect-error
   return typeof args[0] === 'string' ? args[0] : String.raw(...args)
 }
 
@@ -17,10 +16,10 @@ function interpretPath(args) {
 async function createObject(read, write) {
   const obj = {
     data: await read(),
-    save: async(data = obj.data) => {
+    save: async (data = obj.data) => {
       return await write(data)
     },
-    read: async() => {
+    read: async () => {
       obj.data = await read()
       return obj.data
     },
@@ -57,7 +56,7 @@ export async function read(...args) {
   return fs.readFile(path, 'utf-8')
 }
 
-read.sync = function(...args) {
+read.sync = function (...args) {
   const path = interpretPath(args)
   return fs.readFileSync(path, 'utf-8')
 }
@@ -66,7 +65,7 @@ export async function write(path, content) {
   return fs.writeFile(resolve(path), content, 'utf-8')
 }
 
-write.sync = function(path, content) {
+write.sync = function (path, content) {
   return fs.writeFileSync(resolve(path), content, 'utf-8')
 }
 
@@ -79,7 +78,7 @@ export async function io(...args) {
   )
 }
 
-io.sync = function(...args) {
+io.sync = function (...args) {
   const path = interpretPath(args)
 
   return createSyncObject(
@@ -93,7 +92,7 @@ async function jsonRead(...args) {
   return fs.readJSON(path)
 }
 
-jsonRead.sync = function(...args) {
+jsonRead.sync = function (...args) {
   const path = interpretPath(args)
   return fs.readJSONSync(path)
 }
@@ -109,7 +108,7 @@ async function jsonIO(...args) {
   )
 }
 
-jsonIO.sync = function(...args) {
+jsonIO.sync = function (...args) {
   const path = interpretPath(args)
 
   return createSyncObject(
