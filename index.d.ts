@@ -14,7 +14,7 @@ export interface IOSyncReturn<T> {
   read(): T
 }
 
-export interface read {
+interface Read {
   (str: string): Promise<string>
   (template: TemplateStringsArray, ...substitutions: any[]): Promise<string>
 
@@ -30,22 +30,22 @@ export interface read {
   }
 }
 
-export declare const remove: {
+interface Remove {
   (str: string): Promise<void>
   (template: TemplateStringsArray, ...substitutions: any[]): Promise<void>
 }
 
-export declare const exists: {
+interface Exists {
   (str: string): boolean
   (template: TemplateStringsArray, ...substitutions: any[]): boolean
 }
 
-export declare const write: {
+interface Write {
   (path: string, content: string): Promise<void>
   sync(path: string, content: string): void
 }
 
-export declare const io: {
+interface IO {
   (str: string): Promise<IOReturn<string>>
   (template: TemplateStringsArray, ...substitutions: any[]): Promise<IOReturn<string>>
 
@@ -62,6 +62,12 @@ export declare const io: {
     spaces: number
   }
 }
+
+export declare const read: Read;
+export declare const write: Write;
+export declare const remove: Remove;
+export declare const exists: Exists;
+export declare const io: IO;
 
 export function glob(template: TemplateStringsArray, ...substitutions: any[]): Promise<string[]>
 
